@@ -1,17 +1,17 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.3
-;// March 1, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.5.4
+;// March 21, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
 
 ;// Special comments
 
-;D is used to mark [[deprecated]] in this version script segments 
+;D  is used to mark [[deprecated]] in this version script segments 
 
 ;Dc is used to mark [[deprecated]] in this version script segments, 
     ; specifying "hotkey conflict" as the reason.
 
-;T is used to mark [[in testing]] in this version script segments
+;T  is used to mark [[in testing]] in this version script segments
 
 ;Tu is used to mark [[in testing]] in this version script segments,
     ; specifying "unstable" as the reason.
@@ -40,10 +40,10 @@ ActivateOrOpen(Title, Path) {
     ;// Windows Calculator on Win+z
     run calc.exe
     return
-#c::
-    ;// Command Line on Win+c
-    run cmd
-    return
+;Dc #c::
+;Dc     ;// Command Line on Win+c
+;Dc     run cmd
+;Dc     return
 #v::
 #F1::
     ;// Vivaldi Browser on Win+v and Win+F1
@@ -91,10 +91,20 @@ ActivateOrOpen(Title, Path) {
     run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
     return
 
-;D #RButton:: sendInput #{e}
-;D     ;// Explorer on Win+RMB
-;D XButton1 & RButton:: sendInput #{e}
-;D     ;// Explorer on x1+RMB
+#c::
+    Process, Exist, Terminus.exe
+    {
+        if !ErrorLevel
+            Run "C:\Program Files\Terminus\Terminus.exe"
+        else
+            WinActivate, ahk_pid %ErrorLevel%
+    }
+    return
+
+;D  #RButton:: sendInput #{e}
+;D      ;// Explorer on Win+RMB
+;D  XButton1 & RButton:: sendInput #{e}
+;D      ;// Explorer on x1+RMB
 
 
 ;/* Media control */
