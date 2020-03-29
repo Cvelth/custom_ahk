@@ -1,4 +1,4 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.1
+﻿;// Custom AHK (AutoHotKey) script v1.5.1.1
 ;// August 10, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
@@ -137,14 +137,14 @@ CapsLock & a::
     keyWait LWin
     keyWait a
     sendInput #^{Left}
-    sendInput {CapsLock}
+    ; sendInput {CapsLock}
     return
 CapsLock & s:: 
     ;// switch to next desktop with CapsLock+s
     keyWait LWin
     keyWait s
     sendInput #^{Right}
-    sendInput {CapsLock}
+    ; sendInput {CapsLock}
     return
     
     ;/* Mouse */
