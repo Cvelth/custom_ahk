@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.2
-;// February 29, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.5.3
+;// March 1, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -53,7 +53,10 @@ ActivateOrOpen(Title, Path) {
     ;// Visual Studio 2017 on Win+F2
     run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
     return
-
+#F3:: 
+    ;// PotPlayer on Win+F3
+    ActivateOrOpen("ahk_exe PotPlayerMini64.exe", "C:\Program Files\PotPlayer\PotPlayerMini64.exe")
+    return
 #F4:: 
     ;// Line on Win+F4
     ActivateOrOpen("はるか", "C:\Users\Cvelth\AppData\Local\LINE\bin\current\LINE.exe")
