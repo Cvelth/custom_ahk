@@ -1,10 +1,15 @@
-﻿;// Custom AHK (AutoHotKey) script v1.4
+﻿;// Custom AHK (AutoHotKey) script v1.4.1
 ;// November 3, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
+
 ;// Special comments
+
 ;D is used to mark [[deprecated]] in this version script segments 
+
+;Dc is used to mark [[deprecated]] in this version script segments, 
+    ; specifying "hotkey conflict" as deprecation reason.
 
 
 #NoEnv
@@ -54,6 +59,11 @@ ActivateOrOpen(Title, Path) {
 #F12:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
     ;// Monosnap on Win+F12
 
+#RButton:: sendInput #{e}
+    ;// Explorer on Win+RMB
+XButton1 & RButton:: sendInput #{e}
+    ;// Explorer on x1+RMB
+
 
 ;/* Media control */
 
@@ -74,23 +84,23 @@ ActivateOrOpen(Title, Path) {
     
     ;/* Mouse controls */
 
-#WheelUp::sendInput #^{Left}
+#WheelUp:: sendInput #^{Left}
     ;// switch to previous desktop
-#WheelDown::sendInput #^{Right}
+#WheelDown:: sendInput #^{Right}
     ;// switch to next desktop
-#MButton::sendInput #^{d}
+#MButton:: sendInput #^{d}
     ;// create new desktop
-#RButton::sendInput #^{f4}
-    ;// delete current desktop
+;Dc #RButton:: sendInput #^{f4}
+;Dc     ;// delete current desktop
 
-XButton1 & WheelUp::sendInput #^{Left}
+XButton1 & WheelUp:: sendInput #^{Left}
     ;// switch to previous desktop
-XButton1 & WheelDown::sendInput #^{Right}
+XButton1 & WheelDown:: sendInput #^{Right}
     ;// switch to next desktop
-XButton1 & MButton::sendInput #^{d} 
+XButton1 & MButton:: sendInput #^{d} 
     ;// create new desktop
-XButton1 & RButton::sendInput #^{f4} 
-    ;// delete current desktop
+;Dc XButton1 & RButton:: sendInput #^{f4} 
+;Dc     ;// delete current desktop
 
 
 ;/* Key remaps */
