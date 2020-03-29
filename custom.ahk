@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.1
-;// August 1, 2018
+﻿;// Custom AHK (AutoHotKey) script v1.2
+;// August 24, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -17,7 +17,9 @@ SetWorkingDir %A_ScriptDir%
 #WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
 #MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
 #RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
-
+    ;// Alternative
+^z::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
+#^x::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
 
 ;/* Additional mouse key remap */
 XButton1::sendInput {RWin down} ;// Mouse x1 -> Right Windows Key
