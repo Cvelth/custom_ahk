@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.1.1
-;// August 10, 2019
+﻿;// Custom AHK (AutoHotKey) script v1.5.1.2
+;// November 8, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -64,7 +64,7 @@ ActivateOrOpen(Title, Path) {
     return
 #F7::
     ;// Adobe Photoshop CC 2019 on Win+F7
-    ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2019")
+    ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop 2020")
     return
 #F8::
     ;// Simplenote on Win+F8
