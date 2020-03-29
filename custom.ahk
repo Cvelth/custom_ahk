@@ -1,4 +1,4 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5
+﻿;// Custom AHK (AutoHotKey) script v1.5.1
 ;// August 10, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
@@ -9,7 +9,12 @@
 ;D is used to mark [[deprecated]] in this version script segments 
 
 ;Dc is used to mark [[deprecated]] in this version script segments, 
-    ; specifying "hotkey conflict" as deprecation reason.
+    ; specifying "hotkey conflict" as the reason.
+
+;T is used to mark [[in testing]] in this version script segments
+
+;Tu is used to mark [[in testing]] in this version script segments,
+    ; specifying "unstable" as the reason.
 
 
 #NoEnv
@@ -106,57 +111,72 @@ ActivateOrOpen(Title, Path) {
     ;/* Keyboard */
 
 #^z::
-    ;// switch to previous desktop
+    ;// switch to previous desktop with Win+Ctrl+z
     keyWait LWin
     sendInput #^{Left}
     return
 #^x::
-    ;// switch to next desktop
+    ;// switch to next desktop with Win+Ctrl+x
     keyWait LWin
     sendInput #^{Right}
     return
 
 #q::
-    ;// switch to previous desktop
+    ;// switch to previous desktop with Win+q
     keyWait LWin
     sendInput #^{Left}
     return
 #w::
-    ;// switch to next desktop
+    ;// switch to next desktop with Win+w
     keyWait LWin
     sendInput #^{Right}
+    return
+
+CapsLock & a:: 
+    ;// switch to previous desktop with CapsLock+a
+    keyWait LWin
+    keyWait a
+    sendInput #^{Left}
+    sendInput {CapsLock}
+    return
+CapsLock & s:: 
+    ;// switch to next desktop with CapsLock+s
+    keyWait LWin
+    keyWait s
+    sendInput #^{Right}
+    sendInput {CapsLock}
     return
     
     ;/* Mouse */
 
 #WheelUp::
-    ;// switch to previous desktop
+    ;// switch to previous desktop with Win+WheelUp
     keyWait LWin
     sendInput #^{Left}
     return
 #WheelDown::
-    ;// switch to next desktop
+    ;// switch to next desktop with Win+WheelDown
     keyWait LWin
     sendInput #^{Right}
     return
 #MButton::
-    ;// create new desktop
+    ;// create new desktop with Win+MMB
     keyWait LWin
     sendInput #^{d}
     return
 
 XButton1 & WheelUp::
-    ;// switch to previous desktop
+    ;// switch to previous desktop with x1+WheelUp
     keyWait LWin
     sendInput #^{Left}
     return
 XButton1 & WheelDown::
-    ;// switch to next desktop
+    ;// switch to next desktop with x1+WheelDown
     keyWait LWin
     sendInput #^{Right}
     return
 XButton1 & MButton::
-    ;// create new desktop
+    ;// create new desktop with x1+MMB
     keyWait LWin
     sendInput #^{d}
     return
@@ -171,6 +191,7 @@ XButton1 & MButton::
 ;/* Keystrokes */
 
 :*:(c):: ©
+    ;// (c) -> ©
 
 
 ;/* Other Features */
@@ -179,6 +200,13 @@ XButton1 & MButton::
     ;// Google Search using value stored in the clipboard.
     Run http://www.google.com/search?q=%Clipboard%
     return
+
+;Tu CapsLock & Tab::
+;Tu     keyWait LAlt
+;Tu     keyWait Tab
+;Tu     sendInput !{Tab}
+;Tu     sendInput {CapsLock}
+;Tu     return
 
 
 return
