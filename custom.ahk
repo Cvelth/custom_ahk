@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.4.2
-;// July 11, 2019
+﻿;// Custom AHK (AutoHotKey) script v1.5
+;// August 10, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -15,7 +15,7 @@
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
-#SingleInstance off
+#SingleInstance force
 
 
 ;/* Procedures */
@@ -31,83 +31,135 @@ ActivateOrOpen(Title, Path) {
 
 ;/* Program Launch */
 
-#z:: run calc.exe 
+#z::
     ;// Windows Calculator on Win+z
-#c:: run cmd 
+    run calc.exe
+    return
+#c::
     ;// Command Line on Win+c
-#v:: ActivateOrOpen("ahk_exe vivaldi.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vivaldi")
-    ;// Vivaldi Browser on Win+v
-
-#F1:: ActivateOrOpen("ahk_exe vivaldi.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vivaldi")
-    ;// Vivaldi Browser on Win+F1
-#F2:: run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
+    run cmd
+    return
+#v::
+#F1::
+    ;// Vivaldi Browser on Win+v and Win+F1
+    ActivateOrOpen("ahk_exe vivaldi.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vivaldi")
+    return
+#F2::
     ;// Visual Studio 2017 on Win+F2
+    run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
+    return
 
-#F5:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
+#F5::
     ;// Telegram on Win+F5
-#F6:: run explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App
+    run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
+    return
+#F6::
     ;// Takoboto on Win+F6
-#F7:: ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2019")
+    run explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App
+    return
+#F7::
     ;// Adobe Photoshop CC 2019 on Win+F7
-#F8:: run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
+    ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2019")
+    return
+#F8::
     ;// Simplenote on Win+F8
+    run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
+    return
 
-#F10:: run explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App
+#F10:: 
     ;// LastPass on Win+F10
-#F11:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Control Panel"
+    run explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App
+    return
+#F11:: 
     ;// Control Panel on Win+F11
-#F12:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
+    run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Control Panel"
+    return
+#F12::
     ;// Monosnap on Win+F12
+    run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
+    return
 
-#RButton:: sendInput #{e}
-    ;// Explorer on Win+RMB
-XButton1 & RButton:: sendInput #{e}
-    ;// Explorer on x1+RMB
+;D #RButton:: sendInput #{e}
+;D     ;// Explorer on Win+RMB
+;D XButton1 & RButton:: sendInput #{e}
+;D     ;// Explorer on x1+RMB
 
 
 ;/* Media control */
 
-^[:: sendInput {Media_Prev}
+^[::
     ;// Media_Prev on Ctrl+[
-^]:: sendInput {Media_Next}
+    sendInput {Media_Prev}
+    return
+^]::
     ;// Media_Next on Ctrl+]
-^':: sendInput {Media_Play_Pause}
+    sendInput {Media_Next}
+    return
+^'::
     ;// Media_Play_Pause on Ctrl+'
+    sendInput {Media_Play_Pause}
+    return
 
 
 ;/* Virtual desktop control */
 
-#^z:: sendInput #^{Left} ;!{Tab}
-    ;// switch to previous desktop
-#^x:: sendInput #^{Right} ;!{Tab}
-    ;// switch to next desktop
+    ;/* Keyboard */
 
-    ;/* Alternative */
+#^z::
+    ;// switch to previous desktop
+    keyWait LWin
+    sendInput #^{Left}
+    return
+#^x::
+    ;// switch to next desktop
+    keyWait LWin
+    sendInput #^{Right}
+    return
+
+#q::
+    ;// switch to previous desktop
+    keyWait LWin
+    sendInput #^{Left}
+    return
+#w::
+    ;// switch to next desktop
+    keyWait LWin
+    sendInput #^{Right}
+    return
     
-#q:: sendInput #^{Left}  ;!{Tab}
-    ;// switch to previous desktop
-#w:: sendInput #^{Right} ;!{Tab}
-    ;// switch to next desktop
-    
-    ;/* Mouse controls */
+    ;/* Mouse */
 
-#WheelUp:: sendInput #^{Left}
+#WheelUp::
     ;// switch to previous desktop
-#WheelDown:: sendInput #^{Right}
+    keyWait LWin
+    sendInput #^{Left}
+    return
+#WheelDown::
     ;// switch to next desktop
-#MButton:: sendInput #^{d}
+    keyWait LWin
+    sendInput #^{Right}
+    return
+#MButton::
     ;// create new desktop
-;Dc #RButton:: sendInput #^{f4}
-;Dc     ;// delete current desktop
+    keyWait LWin
+    sendInput #^{d}
+    return
 
-XButton1 & WheelUp:: sendInput #^{Left}
+XButton1 & WheelUp::
     ;// switch to previous desktop
-XButton1 & WheelDown:: sendInput #^{Right}
+    keyWait LWin
+    sendInput #^{Left}
+    return
+XButton1 & WheelDown::
     ;// switch to next desktop
-XButton1 & MButton:: sendInput #^{d} 
+    keyWait LWin
+    sendInput #^{Right}
+    return
+XButton1 & MButton::
     ;// create new desktop
-;Dc XButton1 & RButton:: sendInput #^{f4} 
-;Dc     ;// delete current desktop
+    keyWait LWin
+    sendInput #^{d}
+    return
 
 
 ;/* Key remaps */
@@ -123,8 +175,10 @@ XButton1 & MButton:: sendInput #^{d}
 
 ;/* Other Features */
 
-#g:: Run http://www.google.com/search?q=%Clipboard%
-    ;// Google Search from clipboard. 
+#g::
+    ;// Google Search using value stored in the clipboard.
+    Run http://www.google.com/search?q=%Clipboard%
+    return
 
 
 return
