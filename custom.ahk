@@ -1,4 +1,4 @@
-﻿;// Custom AHK (AutoHotKey) script v1.3
+﻿;// Custom AHK (AutoHotKey) script v1.3.0.1
 ;// October 23, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
@@ -27,12 +27,12 @@ SetWorkingDir %A_ScriptDir%
 
 #F5:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
     ;// Telegram on Win+F5
-#F6:: run "explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App"
+#F6:: run explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App
     ;// Takoboto on Win+F6
 #F7:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2018"
     ;// Adobe Photoshop CC 2018 on Win+F7
 
-#F10:: run "explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App"
+#F10:: run explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App
     ;// LastPass on Win+F10
 #F11:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Control Panel"
     ;// Control Panel on Win+F11
