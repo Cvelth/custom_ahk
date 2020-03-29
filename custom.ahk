@@ -1,4 +1,4 @@
-﻿;// Custom AHK (AutoHotKey) script v1.6
+﻿;// Custom AHK (AutoHotKey) script v1.6.1
 ;// March 29, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
@@ -123,18 +123,69 @@ ActivateOrOpen(Title, Path) {
     return
 
 
-;/* Virtual desktop control */
+;/* Navigation */
 
-    ;/* Keyboard */
+$!F1:: 
+    ;// flip-flop windows with lowest and highest Z-order value
+    ;// Limited to current desktop 
+    if (next_altesc_direction) {
+        sendInput !{Esc}
+        next_altesc_direction := false
+    } else {
+        sendInput !+{Esc}
+        next_altesc_direction := true 
+    }
+    return
+
+!1::
+    ;// switch to previous virtual desktop with Alt+1
+    ;// remembers last move direction
+    sendInput #^{Left}
+    right_virtual_desktop_is_next := true
+    return
+!2::
+    ;// switch to next virtual desktop with Alt+2
+    ;// remembers last move direction
+    sendInput #^{Right}
+    right_virtual_desktop_is_next := false
+    return
+!`::
+    ;// flip-flop with last virtual desktop with Alt+`
+    ;// uses last move direction
+    if (right_virtual_desktop_is_next) {
+        sendInput #^{Right}
+        right_virtual_desktop_is_next := false
+    } else {
+        sendInput #^{Left}
+        right_virtual_desktop_is_next := true 
+    }
+    return
 
 #q::
-    ;// switch to previous desktop with Win+q
+    ;// switch to previous virtual desktop with Win+q
+    ;// remembers last move direction
     keyWait LWin
     sendInput #^{Left}
+    right_virtual_desktop_is_next := true
     return
 #w::
-    ;// switch to next desktop with Win+w
+    ;// switch to next virtual desktop with Win+w
+    ;// remembers last move direction
     keyWait LWin
+    sendInput #^{Right}
+    right_virtual_desktop_is_next := false
+    return
+
+$#^Left::
+    ;// default switch to previous virtual desktop shortcut
+    ;// remembers last move direction
+    right_virtual_desktop_is_next = true
+    sendInput #^{Left}
+    return
+$#^Right::
+    ;// default switch to next virtual desktop shortcut
+    ;// remembers last move direction
+    right_virtual_desktop_is_next = true
     sendInput #^{Right}
     return
 
