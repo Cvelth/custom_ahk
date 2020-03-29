@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.4.1
-;// November 3, 2018
+﻿;// Custom AHK (AutoHotKey) script v1.4.1.1
+;// July 9, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -40,7 +40,7 @@ ActivateOrOpen(Title, Path) {
 
 #F1:: ActivateOrOpen("ahk_exe vivaldi.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vivaldi")
     ;// Vivaldi Browser on Win+F1
-#F2:: run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual studio 2017"
+#F2:: run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
     ;// Visual Studio 2017 on Win+F2
 
 #F5:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
