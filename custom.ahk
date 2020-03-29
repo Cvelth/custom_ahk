@@ -1,48 +1,92 @@
-﻿;// Custom AHK (AutoHotKey) script v1.2.0.1
-;// September 5, 2018
+﻿;// Custom AHK (AutoHotKey) script v1.3
+;// October 23, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
+
+;// Special comments
+;D is used to mark [[deprecated]] in this version script segments 
 
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 #SingleInstance off
 
+
 ;/* Program Launch */
-#z::run calc.exe ;// Windows Calculator on Win+z
-#c::run cmd ;// Command Line on Win+c
+#z:: run calc.exe 
+    ;// Windows Calculator on Win+z
+#c:: run cmd 
+    ;// Command Line on Win+c
+#v:: run vivaldi 
+    ;// Vivaldi Browser on Win+v
+
+#F1:: run vivaldi
+    ;// Vivaldi Browser on Win+F1
+#F2:: run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual studio 2017"
+    ;// Visual Studio 2017 on Win+F2
+
+#F5:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
+    ;// Telegram on Win+F5
+#F6:: run "explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App"
+    ;// Takoboto on Win+F6
+#F7:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2018"
+    ;// Adobe Photoshop CC 2018 on Win+F7
+
+#F10:: run "explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App"
+    ;// LastPass on Win+F10
+#F11:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Control Panel"
+    ;// Control Panel on Win+F11
+#F12:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
+    ;// Monosnap on Win+F12
+
+
+;/* Media control */
+^[:: sendInput {Media_Prev}
+    ;// Media_Prev on Ctrl+[
+^]:: sendInput {Media_Next}
+    ;// Media_Next on Ctrl+]
+^':: sendInput {Media_Play_Pause}
+    ;// Media_Play_Pause on Ctrl+'
+
 
 ;/* Virtual desktop control */
-#WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
-#WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
-#MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
-#RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
-    ;// Alternative
-#^z::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up}{RAlt down}{Tab}{RAlt up} ;// switch to previous desktop
-#^x::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up}{RAlt down}{Tab}{RAlt up} ;// switch to next desktop
+;D #WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
+;D #WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
+;D #MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
+;D #RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
+;D  ;// Alternative
+#^z::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up}{RAlt down}{Tab}{RAlt up} 
+    ;// switch to previous desktop
+#^x::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up}{RAlt down}{Tab}{RAlt up} 
+    ;// switch to next desktop
+;D 
+;D ;/* Additional mouse key remap */
+;D XButton1::sendInput {RWin down} ;// Mouse x1 -> Right Windows Key
+;D XButton1 Up::sendInput {RWin up}
+;D 
+;D XButton2::sendInput {Enter down} ;// Mouse x2 -> Enter Key
+;D XButton2 Up::sendInput {Enter up}
+;D 
+;D AppsKey::sendEvent {RAlt down}{Tab}{RAlt up} ;// Apps key -> AltTab
+;D 
+;D 
+;D ;/* Compatibility issue fix */
+;D XButton1 & z:: run calc.exe ;// Windows Calculator on Win+z
+;D XButton1 & c:: run cmd ;// Command Line on Win+c
+;D 
+;D XButton1 & WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
+;D XButton1 & WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
+;D XButton1 & MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
+;D XButton1 & RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
+;D 
+;D RWin & WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
+;D RWin & WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
+;D RWin & MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
+;D RWin & RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
 
-;/* Additional mouse key remap */
-XButton1::sendInput {RWin down} ;// Mouse x1 -> Right Windows Key
-XButton1 Up::sendInput {RWin up}
 
-XButton2::sendInput {Enter down} ;// Mouse x2 -> Enter Key
-XButton2 Up::sendInput {Enter up}
-
-AppsKey::sendEvent {RAlt down}{Tab}{RAlt up} ;// Apps key -> AltTab
-
-
-;/* Compatibility issue fix */
-XButton1 & z:: run calc.exe ;// Windows Calculator on Win+z
-XButton1 & c:: run cmd ;// Command Line on Win+c
-
-XButton1 & WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
-XButton1 & WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
-XButton1 & MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
-XButton1 & RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
-
-RWin & WheelUp::sendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up} ;// switch to previous desktop
-RWin & WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
-RWin & MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
-RWin & RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
+;/* Other Features */
+#g:: Run http://www.google.com/search?q=%Clipboard%
+    ;// Google Search from clipboard. 
 
 return
