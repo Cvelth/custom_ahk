@@ -1,4 +1,4 @@
-﻿;// Custom AHK (AutoHotKey) script v1.3.2.2
+﻿;// Custom AHK (AutoHotKey) script v1.3.3
 ;// November 3, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
@@ -90,6 +90,10 @@ SetWorkingDir %A_ScriptDir%
 ;/* Key remaps */
 ^+/:: sendInput {AppsKey}
     ;// Ctrl+Shift+/ -> AppsKey
+
+
+;/* Keystrokes */
+:*:(c):: ©
 
 
 ;/* Other Features */
