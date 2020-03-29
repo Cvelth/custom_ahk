@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.3.1.1
-;// October 28, 2018
+﻿;// Custom AHK (AutoHotKey) script v1.3.2
+;// November 3, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -85,6 +85,10 @@ SetWorkingDir %A_ScriptDir%
 ;D RWin & WheelDown::sendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up} ;// switch to next desktop
 ;D RWin & MButton::sendInput {LWin down}{LCtrl down}{d}{LWin up}{LCtrl up} ;// new Desktop
 ;D RWin & RButton::sendInput {LWin down}{LCtrl down}{f4}{LWin up}{LCtrl up} ;// remove Desktop
+
+;/* Key remaps */
+f1:: sendInput {AppsKey}
+    ;// F1 -> AppsKey
 
 
 ;/* Other Features */
