@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.4.1.1
-;// July 9, 2019
+﻿;// Custom AHK (AutoHotKey) script v1.4.2
+;// July 11, 2019
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -80,6 +80,13 @@ XButton1 & RButton:: sendInput #{e}
 #^z:: sendInput #^{Left} ;!{Tab}
     ;// switch to previous desktop
 #^x:: sendInput #^{Right} ;!{Tab}
+    ;// switch to next desktop
+
+    ;/* Alternative */
+    
+#q:: sendInput #^{Left}  ;!{Tab}
+    ;// switch to previous desktop
+#w:: sendInput #^{Right} ;!{Tab}
     ;// switch to next desktop
     
     ;/* Mouse controls */
