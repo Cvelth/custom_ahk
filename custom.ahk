@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.5
-;// March 21, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.6
+;// March 29, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -28,7 +28,7 @@ SetWorkingDir %A_ScriptDir%
 #SingleInstance force
 
 
-;/* Procedures */
+;/* Helpers */
 
 ActivateOrOpen(Title, Path) {
     if WinExist(Title)
@@ -45,10 +45,6 @@ ActivateOrOpen(Title, Path) {
     ;// Windows Calculator on Win+z
     run calc.exe
     return
-;Dc #c::
-;Dc     ;// Command Line on Win+c
-;Dc     run cmd
-;Dc     return
 #v::
 #F1::
     ;// Vivaldi Browser on Win+v and Win+F1
@@ -58,16 +54,17 @@ ActivateOrOpen(Title, Path) {
     ;// Visual Studio 2017 on Win+F2
     run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
     return
-#F3:: 
+#F3::
     ;// PotPlayer on Win+F3
     ActivateOrOpen("ahk_exe PotPlayerMini64.exe", "C:\Program Files\PotPlayer\PotPlayerMini64.exe")
     return
-#F4:: 
+#F4::
     ;// Line on Win+F4
     ActivateOrOpen("はるか", "C:\Users\Cvelth\AppData\Local\LINE\bin\current\LINE.exe")
     return
 #F5::
     ;// Telegram on Win+F5
+    ActivateOrOpen("Telegram", "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram")
     run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
     return
 #F6::
@@ -87,8 +84,8 @@ ActivateOrOpen(Title, Path) {
     run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
     return
 #F10:: 
-    ;// LastPass on Win+F10
-    run explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App
+    ;// Bitwarden on Win+F10
+    run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Bitwarden"
     return
 #F11:: 
     ;// Control Panel on Win+F11
@@ -108,11 +105,6 @@ ActivateOrOpen(Title, Path) {
             WinActivate, ahk_pid %ErrorLevel%
     }
     return
-
-;D  #RButton:: sendInput #{e}
-;D      ;// Explorer on Win+RMB
-;D  XButton1 & RButton:: sendInput #{e}
-;D      ;// Explorer on x1+RMB
 
 
 ;/* Media control */
@@ -135,17 +127,6 @@ ActivateOrOpen(Title, Path) {
 
     ;/* Keyboard */
 
-;Do #^z::
-;Do     ;// switch to previous desktop with Win+Ctrl+z
-;Do     keyWait LWin
-;Do     sendInput #^{Left}
-;Do     return
-;Do #^x::
-;Do     ;// switch to next desktop with Win+Ctrl+x
-;Do     keyWait LWin
-;Do     sendInput #^{Right}
-;Do     return
-
 #q::
     ;// switch to previous desktop with Win+q
     keyWait LWin
@@ -157,54 +138,39 @@ ActivateOrOpen(Title, Path) {
     sendInput #^{Right}
     return
 
-;Do CapsLock & a:: 
-;Do     ;// switch to previous desktop with CapsLock+a
+   ;/* Mouse */
+
+;Do #WheelUp::
+;Do     ;// switch to previous desktop with Win+WheelUp
 ;Do     keyWait LWin
-;Do     keyWait a
 ;Do     sendInput #^{Left}
-;Do     ; sendInput {CapsLock}
 ;Do     return
-;Do CapsLock & s:: 
-;Do     ;// switch to next desktop with CapsLock+s
+;Do #WheelDown::
+;Do     ;// switch to next desktop with Win+WheelDown
 ;Do     keyWait LWin
-;Do     keyWait s
 ;Do     sendInput #^{Right}
-;Do     ; sendInput {CapsLock}
 ;Do     return
-    
-    ;/* Mouse */
-
-#WheelUp::
-    ;// switch to previous desktop with Win+WheelUp
-    keyWait LWin
-    sendInput #^{Left}
-    return
-#WheelDown::
-    ;// switch to next desktop with Win+WheelDown
-    keyWait LWin
-    sendInput #^{Right}
-    return
-#MButton::
-    ;// create new desktop with Win+MMB
-    keyWait LWin
-    sendInput #^{d}
-    return
-
-XButton1 & WheelUp::
-    ;// switch to previous desktop with x1+WheelUp
-    keyWait LWin
-    sendInput #^{Left}
-    return
-XButton1 & WheelDown::
-    ;// switch to next desktop with x1+WheelDown
-    keyWait LWin
-    sendInput #^{Right}
-    return
-XButton1 & MButton::
-    ;// create new desktop with x1+MMB
-    keyWait LWin
-    sendInput #^{d}
-    return
+;Do #MButton::
+;Do     ;// create new desktop with Win+MMB
+;Do     keyWait LWin
+;Do     sendInput #^{d}
+;Do     return
+;Do 
+;Do XButton1 & WheelUp::
+;Do     ;// switch to previous desktop with x1+WheelUp
+;Do     keyWait LWin
+;Do     sendInput #^{Left}
+;Do     return
+;Do XButton1 & WheelDown::
+;Do     ;// switch to next desktop with x1+WheelDown
+;Do     keyWait LWin
+;Do     sendInput #^{Right}
+;Do     return
+;Do XButton1 & MButton::
+;Do     ;// create new desktop with x1+MMB
+;Do     keyWait LWin
+;Do     sendInput #^{d}
+;Do     return
 
 
 ;/* Key remaps */
