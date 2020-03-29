@@ -1,15 +1,20 @@
-﻿;// Custom AHK (AutoHotKey) script v1.5.4
+﻿;// Custom AHK (AutoHotKey) script v1.5.5
 ;// March 21, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
 
-;// Special comments
+;/* Special comments */
+
 
 ;D  is used to mark [[deprecated]] in this version script segments 
 
 ;Dc is used to mark [[deprecated]] in this version script segments, 
     ; specifying "hotkey conflict" as the reason.
+
+;Do is used to mark [[deprecated]] in this version script segments, 
+    ; specifying "obsolete" as the reason.
+
 
 ;T  is used to mark [[in testing]] in this version script segments
 
@@ -74,10 +79,13 @@ ActivateOrOpen(Title, Path) {
     ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop 2020")
     return
 #F8::
-    ;// Simplenote on Win+F8
+    ;// TickTick on Win+F8
+    run "C:\Program Files (x86)\TickTick\TickTick.exe"
+    return
+#F9::
+    ;// Simplenote on Win+F9
     run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
     return
-
 #F10:: 
     ;// LastPass on Win+F10
     run explorer.exe shell:AppsFolder\LastPass.LastPass_qq0fmhteeht3j!App
@@ -127,16 +135,16 @@ ActivateOrOpen(Title, Path) {
 
     ;/* Keyboard */
 
-#^z::
-    ;// switch to previous desktop with Win+Ctrl+z
-    keyWait LWin
-    sendInput #^{Left}
-    return
-#^x::
-    ;// switch to next desktop with Win+Ctrl+x
-    keyWait LWin
-    sendInput #^{Right}
-    return
+;Do #^z::
+;Do     ;// switch to previous desktop with Win+Ctrl+z
+;Do     keyWait LWin
+;Do     sendInput #^{Left}
+;Do     return
+;Do #^x::
+;Do     ;// switch to next desktop with Win+Ctrl+x
+;Do     keyWait LWin
+;Do     sendInput #^{Right}
+;Do     return
 
 #q::
     ;// switch to previous desktop with Win+q
@@ -149,20 +157,20 @@ ActivateOrOpen(Title, Path) {
     sendInput #^{Right}
     return
 
-CapsLock & a:: 
-    ;// switch to previous desktop with CapsLock+a
-    keyWait LWin
-    keyWait a
-    sendInput #^{Left}
-    ; sendInput {CapsLock}
-    return
-CapsLock & s:: 
-    ;// switch to next desktop with CapsLock+s
-    keyWait LWin
-    keyWait s
-    sendInput #^{Right}
-    ; sendInput {CapsLock}
-    return
+;Do CapsLock & a:: 
+;Do     ;// switch to previous desktop with CapsLock+a
+;Do     keyWait LWin
+;Do     keyWait a
+;Do     sendInput #^{Left}
+;Do     ; sendInput {CapsLock}
+;Do     return
+;Do CapsLock & s:: 
+;Do     ;// switch to next desktop with CapsLock+s
+;Do     keyWait LWin
+;Do     keyWait s
+;Do     sendInput #^{Right}
+;Do     ; sendInput {CapsLock}
+;Do     return
     
     ;/* Mouse */
 
@@ -207,8 +215,8 @@ XButton1 & MButton::
 
 ;/* Keystrokes */
 
-:*:(c):: ©
-    ;// (c) -> ©
+;Do :*:(c):: ©
+;Do     ;// (c) -> ©
 
 
 ;/* Other Features */
@@ -217,13 +225,6 @@ XButton1 & MButton::
     ;// Google Search using value stored in the clipboard.
     Run http://www.google.com/search?q=%Clipboard%
     return
-
-;Tu CapsLock & Tab::
-;Tu     keyWait LAlt
-;Tu     keyWait Tab
-;Tu     sendInput !{Tab}
-;Tu     sendInput {CapsLock}
-;Tu     return
 
 
 return
