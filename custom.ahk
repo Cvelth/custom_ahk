@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.3.1
-;// October 24, 2018
+﻿;// Custom AHK (AutoHotKey) script v1.3.1.1
+;// October 28, 2018
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -29,8 +29,8 @@ SetWorkingDir %A_ScriptDir%
     ;// Telegram on Win+F5
 #F6:: run explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App
     ;// Takoboto on Win+F6
-#F7:: run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2018"
-    ;// Adobe Photoshop CC 2018 on Win+F7
+#F7:: run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop CC 2019"
+    ;// Adobe Photoshop CC 2019 on Win+F7
 #F8:: run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
     ;// Simplenote on Win+F8
 
