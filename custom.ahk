@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.6.1
-;// March 29, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.6.2
+;// March 30, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -41,6 +41,10 @@ ActivateOrOpen(Title, Path) {
 
 ;/* Program Launch */
 
+#c::
+    ;// New Windows Terminal on Win+c
+    ActivateOrOpen("ahk_exe WindowsTerminal.exe", "wt")
+    return
 #z::
     ;// Windows Calculator on Win+z
     run calc.exe
@@ -96,16 +100,6 @@ ActivateOrOpen(Title, Path) {
     run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
     return
 
-#c::
-    Process, Exist, Terminus.exe
-    {
-        if !ErrorLevel
-            Run "C:\Program Files\Terminus\Terminus.exe"
-        else
-            WinActivate, ahk_pid %ErrorLevel%
-    }
-    return
-
 
 ;/* Media control */
 
@@ -150,7 +144,7 @@ $!F1::
     right_virtual_desktop_is_next := false
     return
 !`::
-    ;// flip-flop with last virtual desktop with Alt+`
+    ;// flip-flop with last visited virtual desktop with Alt+`
     ;// uses last move direction
     if (right_virtual_desktop_is_next) {
         sendInput #^{Right}
