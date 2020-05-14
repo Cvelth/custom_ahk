@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.6.2
-;// March 30, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.6.3
+;// May 14th, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -97,7 +97,7 @@ ActivateOrOpen(Title, Path) {
     return
 #F12::
     ;// Monosnap on Win+F12
-    run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Monosnap"
+    run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Monosnap"
     return
 
 
@@ -131,19 +131,19 @@ $!F1::
     }
     return
 
-!1::
+!2::
     ;// switch to previous virtual desktop with Alt+1
     ;// remembers last move direction
     sendInput #^{Left}
     right_virtual_desktop_is_next := true
     return
-!2::
+!3::
     ;// switch to next virtual desktop with Alt+2
     ;// remembers last move direction
     sendInput #^{Right}
     right_virtual_desktop_is_next := false
     return
-!`::
+!1::
     ;// flip-flop with last visited virtual desktop with Alt+`
     ;// uses last move direction
     if (right_virtual_desktop_is_next) {
