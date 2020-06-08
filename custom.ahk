@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.6.3
-;// May 14th, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.7.0
+;// June 8th, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -237,5 +237,10 @@ $#^Right::
     Run http://www.google.com/search?q=%Clipboard%
     return
 
+#f::
+    ;// Google Search using selected text
+    sendInput ^c
+    Run http://www.google.com/search?q=%Clipboard%
+    return
 
 return
