@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.7.0
-;// June 8th, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.7.1
+;// September 5th, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -56,7 +56,7 @@ ActivateOrOpen(Title, Path) {
     return
 #F2::
     ;// Visual Studio 2017 on Win+F2
-    run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019"
+    ActivateOrOpen("ahk_exe devenv.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019")
     return
 #F3::
     ;// PotPlayer on Win+F3
@@ -242,5 +242,8 @@ $#^Right::
     sendInput ^c
     Run http://www.google.com/search?q=%Clipboard%
     return
+
+#b:: sendInput #+v1
+    ;//Focus a displayed notification
 
 return
