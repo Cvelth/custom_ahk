@@ -1,5 +1,5 @@
-﻿;// Custom AHK (AutoHotKey) script v1.7.1
-;// September 5th, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.8.0
+;// November 29th, 2020
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
 
@@ -30,11 +30,11 @@ SetWorkingDir %A_ScriptDir%
 
 ;/* Helpers */
 
-ActivateOrOpen(Title, Path) {
+ActivateOrOpen(Title, Command) {
     if WinExist(Title)
         WinActivate
     else
-        run %Path%
+        run %Command%
     return
 }
 
@@ -47,7 +47,11 @@ ActivateOrOpen(Title, Path) {
     return
 #z::
     ;// Windows Calculator on Win+z
-    run calc.exe
+    ActivateOrOpen("Calculator", "calc.exe")
+    return
+#f::
+    ;// NotepadS on Win+f
+    run explorer.exe shell:AppsFolder\19282JackieLiu.Notepads-Beta_echhpq9pdbte8!App
     return
 #v::
 #F1::
@@ -234,12 +238,6 @@ $#^Right::
 
 #g::
     ;// Google Search using value stored in the clipboard.
-    Run http://www.google.com/search?q=%Clipboard%
-    return
-
-#f::
-    ;// Google Search using selected text
-    sendInput ^c
     Run http://www.google.com/search?q=%Clipboard%
     return
 
