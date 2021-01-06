@@ -1,31 +1,14 @@
-﻿;// Custom AHK (AutoHotKey) script v1.8.0
-;// November 29th, 2020
+﻿;// Custom AHK (AutoHotKey) script v1.9.0
+;// January 6th, 2021
 ;// cvelth <cvelth.mail@gmail.com>
 ;// Licenced under "Unlicense", see <https://unlicense.org>
-
-
-;/* Special comments */
-
-
-;D  is used to mark [[deprecated]] in this version script segments 
-
-;Dc is used to mark [[deprecated]] in this version script segments, 
-    ; specifying "hotkey conflict" as the reason.
-
-;Do is used to mark [[deprecated]] in this version script segments, 
-    ; specifying "obsolete" as the reason.
-
-
-;T  is used to mark [[in testing]] in this version script segments
-
-;Tu is used to mark [[in testing]] in this version script segments,
-    ; specifying "unstable" as the reason.
-
 
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 #SingleInstance force
+DetectHiddenWindows, On
+SetTitleMatchMode, 2
 
 
 ;/* Helpers */
@@ -42,65 +25,65 @@ ActivateOrOpen(Title, Command) {
 ;/* Program Launch */
 
 #c::
-    ;// New Windows Terminal on Win+c
+    ;// "Windows Terminal" on Win+c
     ActivateOrOpen("ahk_exe WindowsTerminal.exe", "wt")
     return
 #z::
-    ;// Windows Calculator on Win+z
+    ;// "Windows Calculator" on Win+z
     ActivateOrOpen("Calculator", "calc.exe")
     return
 #f::
-    ;// NotepadS on Win+f
+    ;// "NotepadS" on Win+f
     run explorer.exe shell:AppsFolder\19282JackieLiu.Notepads-Beta_echhpq9pdbte8!App
     return
 #v::
 #F1::
-    ;// Vivaldi Browser on Win+v and Win+F1
+    ;// "Vivaldi Browser" on Win+v and Win+F1
     ActivateOrOpen("ahk_exe vivaldi.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vivaldi")
     return
 #F2::
-    ;// Visual Studio 2017 on Win+F2
-    ActivateOrOpen("ahk_exe devenv.exe", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019")
+    ;// "Visual Studio 2019" on Win+F2
+    ActivateOrOpen("Microsoft Visual Studio", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019")
     return
 #F3::
-    ;// PotPlayer on Win+F3
-    ActivateOrOpen("ahk_exe PotPlayerMini64.exe", "C:\Program Files\PotPlayer\PotPlayerMini64.exe")
+    ;// "PotPlayer" on Win+F3
+    ActivateOrOpen("PotPlayer", "C:\Program Files\PotPlayer\PotPlayerMini64.exe")
     return
 #F4::
-    ;// Line on Win+F4
+    ;// "Line" on Win+F4
     ActivateOrOpen("はるか", "C:\Users\Cvelth\AppData\Local\LINE\bin\current\LINE.exe")
     return
 #F5::
-    ;// Telegram on Win+F5
+    ;// "Telegram" on Win+F5
     ActivateOrOpen("Telegram", "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram")
     run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Telegram"
     return
 #F6::
-    ;// Takoboto on Win+F6
+    ;// "Takoboto" on Win+F6
     run explorer.exe shell:AppsFolder\32064Takoboto.TakobotoJapaneseDictionary_9b12gkevbv5ht!App
     return
 #F7::
-    ;// Adobe Photoshop CC 2019 on Win+F7
-    ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop 2020")
+    ;// "Adobe Photoshop CC 2021" on Win+F7
+    ActivateOrOpen("ahk_class Photoshop", "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Photoshop 2021")
     return
 #F8::
-    ;// TickTick on Win+F8
+    ;// "TickTick" on Win+F8
     run "C:\Program Files (x86)\TickTick\TickTick.exe"
     return
 #F9::
-    ;// Simplenote on Win+F9
+    ;// "Simplenote" on Win+F9
     run explorer.exe shell:AppsFolder\22490Automattic.Simplenote_9h07f78gwnchp!Simplenote
     return
 #F10:: 
-    ;// Bitwarden on Win+F10
+    ;// "Bitwarden" on Win+F10
     run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Bitwarden"
     return
 #F11:: 
-    ;// Control Panel on Win+F11
+    ;// "Control Panel" on Win+F11
     run "C:\Users\Cvelth\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Control Panel"
     return
 #F12::
-    ;// Monosnap on Win+F12
+    ;// "Monosnap" on Win+F12
     run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Monosnap"
     return
 
@@ -123,32 +106,33 @@ ActivateOrOpen(Title, Command) {
 
 ;/* Navigation */
 
-$!F1:: 
-    ;// flip-flop windows with lowest and highest Z-order value
-    ;// Limited to current desktop 
-    if (next_altesc_direction) {
-        sendInput !{Esc}
-        next_altesc_direction := false
-    } else {
-        sendInput !+{Esc}
-        next_altesc_direction := true 
-    }
-    return
+; [[deprecated]]
+; $!F1:: 
+;     ;// flip-flop windows with lowest and highest Z-order value
+;     ;// Limited to current desktop 
+;     if (next_altesc_direction) {
+;         sendInput !{Esc}
+;         next_altesc_direction := false
+;     } else {
+;         sendInput !+{Esc}
+;         next_altesc_direction := true 
+;     }
+;     return
 
 !2::
-    ;// switch to previous virtual desktop with Alt+1
+    ;// switch to previous virtual desktop with Alt+2
     ;// remembers last move direction
     sendInput #^{Left}
     right_virtual_desktop_is_next := true
     return
 !3::
-    ;// switch to next virtual desktop with Alt+2
+    ;// switch to next virtual desktop with Alt+3
     ;// remembers last move direction
     sendInput #^{Right}
     right_virtual_desktop_is_next := false
     return
 !1::
-    ;// flip-flop with last visited virtual desktop with Alt+`
+    ;// flip-flop with last visited virtual desktop with Alt+1
     ;// uses last move direction
     if (right_virtual_desktop_is_next) {
         sendInput #^{Right}
@@ -183,43 +167,44 @@ $#^Left::
 $#^Right::
     ;// default switch to next virtual desktop shortcut
     ;// remembers last move direction
-    right_virtual_desktop_is_next = true
+    right_virtual_desktop_is_next = false
     sendInput #^{Right}
     return
 
    ;/* Mouse */
 
-;Do #WheelUp::
-;Do     ;// switch to previous desktop with Win+WheelUp
-;Do     keyWait LWin
-;Do     sendInput #^{Left}
-;Do     return
-;Do #WheelDown::
-;Do     ;// switch to next desktop with Win+WheelDown
-;Do     keyWait LWin
-;Do     sendInput #^{Right}
-;Do     return
-;Do #MButton::
-;Do     ;// create new desktop with Win+MMB
-;Do     keyWait LWin
-;Do     sendInput #^{d}
-;Do     return
-;Do 
-;Do XButton1 & WheelUp::
-;Do     ;// switch to previous desktop with x1+WheelUp
-;Do     keyWait LWin
-;Do     sendInput #^{Left}
-;Do     return
-;Do XButton1 & WheelDown::
-;Do     ;// switch to next desktop with x1+WheelDown
-;Do     keyWait LWin
-;Do     sendInput #^{Right}
-;Do     return
-;Do XButton1 & MButton::
-;Do     ;// create new desktop with x1+MMB
-;Do     keyWait LWin
-;Do     sendInput #^{d}
-;Do     return
+; [[deprecated]]
+; #WheelUp::
+;     ;// switch to previous desktop with Win+WheelUp
+;     keyWait LWin
+;     sendInput #^{Left}
+;     return
+; #WheelDown::
+;     ;// switch to next desktop with Win+WheelDown
+;     keyWait LWin
+;     sendInput #^{Right}
+;     return
+; #MButton::
+;     ;// create new desktop with Win+MMB
+;     keyWait LWin
+;     sendInput #^{d}
+;     return
+; 
+; XButton1 & WheelUp::
+;     ;// switch to previous desktop with x1+WheelUp
+;     keyWait LWin
+;     sendInput #^{Left}
+;     return
+; XButton1 & WheelDown::
+;     ;// switch to next desktop with x1+WheelDown
+;     keyWait LWin
+;     sendInput #^{Right}
+;     return
+; XButton1 & MButton::
+;     ;// create new desktop with x1+MMB
+;     keyWait LWin
+;     sendInput #^{d}
+;     return
 
 
 ;/* Key remaps */
@@ -229,9 +214,9 @@ $#^Right::
 
 
 ;/* Keystrokes */
-
-;Do :*:(c):: ©
-;Do     ;// (c) -> ©
+; [[deprecated]]
+; :*:(c):: ©
+;     ;// (c) -> ©
 
 
 ;/* Other Features */
